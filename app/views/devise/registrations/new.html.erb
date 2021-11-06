@@ -1,7 +1,14 @@
-<h2>新規ユーザー登録</h2>
+
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+
+<% if current_page?(new_admin_registration_path) %>
+<h2>管理者登録</h2>
+
+
+<% else %>
+<h2>新規ユーザー登録</h2>
 
   <span>名前</span>
   <!--レイアウト未-->
@@ -58,9 +65,10 @@
   <div class="actions">
     <%= f.submit "新規登録" %>
   </div>
+  
+  <h2>既に登録済みの方</h2>
+    <%= render "devise/shared/links" %>
+    <!--↑の表記を"こちら"に変えたい-->
+  <span>からログインしてください。</span>
 <% end %>
-
-<h2>既に登録済みの方</h2>
-<%= render "devise/shared/links" %>
-<!--↑の表記を"こちら"に変えたい-->
-<span>からログインしてください。</span>
+<% end %>
