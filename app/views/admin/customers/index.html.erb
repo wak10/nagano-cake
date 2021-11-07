@@ -1,0 +1,28 @@
+<h2>会員一覧</h2>
+  <table>
+    <tr>
+      <th>会員ID</th>
+      <th>氏名</th>
+      <th>メールアドレス</th>
+      <th>ステータス</th>
+    </tr>
+    <% @customers.each do |customer| %>
+    <tr>
+      <td><%= customer.id %> </td>
+      <td>  <%= link_to customer.name, admin_customer_path(item.id) %> </td>
+      <td><%= customer.email %> </td>
+      <td><%= item.genre.name %> </td>
+      <td>
+        <p>
+        <% if customer.is_active == true %>
+          有効
+        <% else %>
+          退会
+        <% end %>
+         </p>
+      </td>
+    </tr>
+    <% end %>
+
+  </table>
+  <%= paginate(@customers) %>
