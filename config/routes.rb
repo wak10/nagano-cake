@@ -1,8 +1,28 @@
 Rails.application.routes.draw do
   devise_for :admin
   devise_for :customer
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root "public/homes#top"
+
+
+  scope module: :public do
+    root 'homes#top'
+    get '/about', to: 'homes#about'
+    resources :items, only: [:index, :show]
+    resources :customers, only: [:edit, :show, :update] do
+        get :unsubscribe, on: :collection
+        patch :withdraw, on: :collection
+    end
+    resources :cart_items, only: [:index, :create, :update, :destroy ] do
+        delete :destroy_all, on: :collection
+    end
+    resources :orders, only: [:index, :new, :show] do
+        post :confirm, on: :collection
+        get :complete, on: :collection
+        post :create, on: :collection
+    end
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy ]
+
+  end
+
 
   namespace :admin do
     resources :genres, only: [:index, :update, :create, :edit ]
@@ -10,6 +30,8 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :update, :edit, :show ]
     resources :orders, only: [:update, :show ]
     resources :order_details, only: [:update ]
-    get '/' => 'admin/homes#top'
   end
+    get '/' => 'admin/homes#top'
+
+
 end

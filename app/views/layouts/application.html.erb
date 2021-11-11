@@ -5,50 +5,58 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <% if customer_signed_in? %>
-        <li>
-          <%= link_to "About", _path %>
-          <!--パス未設定-->
-        </li>
-        <li>
-          <%= link_to "商品一覧", _path %>
-          <!--パス未設定-->
-        </li>
-        <li>
-          <%= link_to "新規登録", new_customer_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_customer__session_path %>
-        </li>
+  <body class="d-flex flex-column vh-100">
 
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light">
+       <div class="conteiner">
+          <a class="navbar-brand p-3" href="/">
+            <h2>LOGO</h2>
+          </a>
 
-
-      <% else %>
-        <li>
+        <ul class="navbar-nav ml-auto">
+      <% if admin_signed_in? %>
+        <li class="nav-item">
           <%= link_to "商品一覧", admin_items_path %>
         </li>
-        <li>
+        <li class="nav-item">
           <%= link_to "会員一覧", admin_customers_path %>
         </li>
-        <li>
-          <%= link_to "注文履歴一覧", admin_path %>
+        <li class="nav-item">
+          <%= link_to "注文履歴一覧", root_path %>
         </li>
-        <li>
+        <li class="nav-item">
           <%= link_to "ジャンル一覧", admin_genres_path %>
         </li>
-        <li>
+        <li class="nav-item">
           <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
         </li>
+
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "About", about_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "商品一覧", items_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "新規登録", new_customer_registration_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログイン", new_customer_session_path %>
+        </li>
+
       <% end %>
+      </div>
+    </nav>
     </header>
 
-    <main>
+    <main class="mb-auto">
       <%= yield %>
     </main>
 
