@@ -2,16 +2,17 @@ Rails.application.routes.draw do
   devise_for :admin
   devise_for :customer
 
+  get '/customers/my_page' => 'public/customers#show'
+  get '/customers/unsubscribe' => 'public/customers#unsubscribe'
 
   scope module: :public do
     root 'homes#top'
     get '/about', to: 'homes#about'
     resources :items, only: [:index, :show]
-    resources :customers, only: [:edit, :show, :update] do
-        get :unsubscribe, on: :collection
+    resources :customers, only: [:show, :edit, :update ] do
         patch :withdraw, on: :collection
     end
-    resources :cart_items, only: [:index, :create, :update, :destroy ] do
+    resources :cart_items do
         delete :destroy_all, on: :collection
     end
     resources :orders, only: [:index, :new, :show] do
@@ -20,7 +21,6 @@ Rails.application.routes.draw do
         post :create, on: :collection
     end
     resources :addresses, only: [:index, :edit, :create, :update, :destroy ]
-
   end
 
 
