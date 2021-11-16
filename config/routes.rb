@@ -1,15 +1,21 @@
 Rails.application.routes.draw do
-  devise_for :admin
-  devise_for :customer
+  devise_for :customer,skip: [:passwords,], controllers: {
+  registrations: "customer/registrations",
+  sessions: 'customer/sessions'
+  }
 
-  get '/customers/my_page' => 'public/customers#show'
-  get '/customers/unsubscribe' => 'public/customers#unsubscribe'
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+  }
 
-  scope module: :public do
+
+  scope module: :customer do
+    get '/unsubscribe' => 'customers#unsubscribe'
+    get '/my_page' => 'customers#show'
     root 'homes#top'
     get '/about', to: 'homes#about'
-    resources :items, only: [:index, :show]
-    resources :customers, only: [:show, :edit, :update ] do
+    resources :items, only: [:index, :show ]
+    resource :customers, only: [ :update, :edit ] do
         patch :withdraw, on: :collection
     end
     resources :cart_items do
@@ -23,7 +29,6 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy ]
   end
 
-
   namespace :admin do
     resources :genres, only: [:index, :update, :create, :edit ]
     resources :items, only: [:index, :update, :create, :edit, :show, :new ]
@@ -31,7 +36,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:update, :show ]
     resources :order_details, only: [:update ]
   end
-    get '/' => 'admin/homes#top'
+    get '/admin' => 'admin/homes#top'
 
 
 end

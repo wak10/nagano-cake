@@ -1,0 +1,21 @@
+
+  <h2>ログイン</h2>
+    <h3>会員の方はこちらからログイン</h3>
+<%= form_with model: @customers, url: customer_session_path, local: true do |f| %>
+
+      <div class="field">
+        <%= f.label :メールアドレス %><br/>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+      <div class="field">
+        <%= f.label :パスワード %><br/>
+        <%= f.password_field :password, autocomplete: "current-password" %>
+      </div>
+    <div class="actions">
+      <%= f.submit "ログイン" %>
+    </div>
+    <% end %>
+  <p>会員登録がお済みでない方</p>
+  <%= render "customer/shared/links" %>
+  <span>から新規登録を行ってください。</span>
+
