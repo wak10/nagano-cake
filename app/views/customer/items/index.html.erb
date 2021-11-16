@@ -1,0 +1,14 @@
+<div>
+<h2>商品一覧</h2>
+  <!--全x件-->
+</div>
+
+
+<% @items.each do |item| %>
+  <div>
+    <%= attachment_image_tag item, :image, :fill, 200, 200 %>
+    <%= item.name %>
+    <%= item.price %>
+  </div>
+<% end %>
+  <%= paginate(@items) %>
