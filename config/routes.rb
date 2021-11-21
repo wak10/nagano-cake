@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resource :customers, only: [ :update, :edit ] do
         patch :withdraw, on: :collection
     end
-    resources :cart_items do
+    resources :cart_items, only: [:index, :update, :create, :destroy ] do
         delete :destroy_all, on: :collection
     end
     resources :orders, only: [:index, :new, :show] do
