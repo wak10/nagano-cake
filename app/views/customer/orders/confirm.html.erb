@@ -1,0 +1,39 @@
+<h2>注文情報確認</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+  </tbody>
+</table>
+<table>
+  <tr>
+    <td><p>送料</p></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><p>商品合計</p></td>
+    <td><% @sum %></td>
+  </tr>
+  <tr>
+    <td><p>請求金額</p></td>
+    <td></td>
+  </tr>
+</table>
+
+<h3>お届け先</h3>
+<%= @order.postal_code %>
+<%= @order.address %>
+<%= @order.name %>
+
+
+  <%= link_to "注文入力へ進む", new_order_path %>
+</div>

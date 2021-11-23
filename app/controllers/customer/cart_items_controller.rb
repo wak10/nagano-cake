@@ -1,9 +1,8 @@
 class Customer::CartItemsController < ApplicationController
 
-
   def index
-    @cart_items = CartItem.all
-    # 合計算出のインスタンス
+    @cart_items = current_customer.cart_items
+    # 合計算出の基準値0設定
     @sum = 0
   end
 
