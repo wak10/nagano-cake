@@ -1,16 +1,27 @@
-<p>
-  ようこそ、ながのCAKEへ!</br>
-  このサイトは、ケーキの販売のECサイトになります。</br>
-  会員でない方も商品の閲覧はできますが、</br>
-  購入には会員登録が必要になります。
-</p>
-
-<h2>新着商品</h2>
-
-<% @items.last(4).each do |item| %>
+<div>
   <div>
-    <%= attachment_image_tag item, :image, :fill, 200, 200 %>
-    <%= item.genre.name %>
-    <%= item.price %>
+    <h4 class="text-center p-4 mb-4">
+      ようこそ、ながのCAKEへ!</br>
+      このサイトは、ケーキの販売のECサイトになります。</br>
+      会員でない方も商品の閲覧はできますが、</br>
+      購入には会員登録が必要になります。
+    </h4>
   </div>
-<% end %>
+
+  <div>
+    <h2>新着商品</h2>
+      <div class="row">
+      <% @items.last(4).each do |item| %>
+      <div class="col">
+        <div>
+          <%= attachment_image_tag item, :image, :fill, 200, 200 %>
+        </div>
+        <div>
+          <p><%= item.genre.name %></p>
+          <p>¥<%= item.price %></p>
+        </div>
+      </div>
+      <% end %>
+      </div>
+  </div>
+</div>

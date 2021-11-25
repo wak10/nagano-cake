@@ -14,60 +14,60 @@
 
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
-       <div class="conteiner">
-          <a class="navbar-brand p-3" href="/">
-            <h2>LOGO</h2>
+       <div class="d-flex col mb-auto">
+          <a class="navbar-brand col-4" href="/">
+            <h2>NaganoCake</h2>
           </a>
 
       <% if customer_signed_in? %>
-        <p>
+        <p class="m-auto">
           ようこそ、<%= current_customer.last_name %>さん!
         </p>
 
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
+        <ul class="navbar-nav m-auto">
+          <li class="nav-item px-2">
             <%= link_to "マイページ", my_page_path %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item px-2">
             <%= link_to "商品一覧", items_path %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item px-2">
             <%= link_to "カート", cart_items_path %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item px-2">
             <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
           </li>
         </ul>
       <% elsif admin_signed_in? %>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
+        <ul class="navbar-nav m-auto">
+          <li class="nav-item px-2">
             <%= link_to "商品一覧", admin_items_path %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item px-2">
             <%= link_to "会員一覧", admin_customers_path %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item px-2">
             <%= link_to "注文履歴一覧", root_path %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item px-2">
             <%= link_to "ジャンル一覧", admin_genres_path %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item px-2">
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
           </li>
         </ul>
       <% else %>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+      <ul class="navbar-nav m-auto">
+        <li class="nav-item px-2">
           <%= link_to "About", about_path %>
         </li>
-        <li class="nav-item">
+        <li class="nav-item px-2">
           <%= link_to "商品一覧", items_path %>
         </li>
-        <li class="nav-item">
+        <li class="nav-item px-2">
           <%= link_to "新規登録", new_customer_registration_path %>
         </li>
-        <li class="nav-item">
+        <li class="nav-item px-2">
           <%= link_to "ログイン", customer_session_path, method: :post %>
         </li>
       </ul>
@@ -76,7 +76,7 @@
       </nav>
     </header>
 
-    <main class="mb-auto">
+    <main class="container col-10 m-auto">
       <%= yield %>
     </main>
 

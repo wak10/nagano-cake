@@ -16,7 +16,6 @@ class Customer::CustomersController < ApplicationController
   end
 
   def unsubscribe
-    @customers = current_customer
   end
 
 
