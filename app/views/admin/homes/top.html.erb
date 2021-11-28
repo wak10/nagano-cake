@@ -1,5 +1,7 @@
-<h2>注文履歴一覧</h2>
-  <table>
+<div class="d-inline-flex m-4">
+  <h4 class="bg-light px-4 align-items-center">注文履歴一覧</h4>
+</div>
+  <table class="table table-hover">
     <tr>
       <th>購入日時</th>
       <th>購入者</th>
@@ -7,12 +9,25 @@
       <th>注文ステータス</th>
     </tr>
     <% @orders.each do |order| %>
+    <% @sum_amount = 0 %>
     <tr>
-      <td> <%= link_to order.created_at, admin_order_path(order.id) %> </td>
-      <td><%= order.customer.name %> </td>
-      <td><%= order.order_details.amount %> </td>
+      <td> <%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order.id) %> </td>
+      <td><%= order.name %> </td>
+      <td>
+        <% order.order_details.each do |order_detail| %>
+          <% @sum_amount += order_detail.amount %>
+        <% end %>
+        <%= @sum_amount %>
+      </td>
       <td><%= order.status %> </td>
     </tr>
     <% end %>
   </table>
-  <%= paginate(@orders) %>
+  <div class="d-flex align-items-center">
+  </div>
+
+<div class="container">
+    <div class="d-flex align-items-center justify-content-center">
+    <%= paginate(@orders) %>
+    </div>
+  </div>

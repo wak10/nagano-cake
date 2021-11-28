@@ -1,21 +1,31 @@
-
-  <h2>ログイン</h2>
-    <h3>会員の方はこちらからログイン</h3>
+    <div>
+      <div class="my-3">
+        <h4 class="col-2 bg-light text-center">ログイン</h4>
+      </div>
+      <div>
+        <p class="col-4 bg-light text-center">会員の方はこちらからログイン</p>
+      </div>
+    </div>
 <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
+      <div class=" d-flex  flex-column align-items-center justify-content-center">
+       <div>
+          <span style="margin-right:30px"><%= f.label :メールアドレス %></span>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+        <div>
+          <span style="margin:30px"><%= f.label :パスワード %></span>
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+      </div>
 
-      <div class="field">
-        <%= f.label :メールアドレス %><br/>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
-      <div class="field">
-        <%= f.label :パスワード %><br/>
-        <%= f.password_field :password, autocomplete: "current-password" %>
-      </div>
-    <div class="actions">
-      <%= f.submit "ログイン" %>
+    <div class="text-center mt-2">
+      <%= f.submit "ログイン" ,class:"btn btn-primary"%>
     </div>
     <% end %>
-  <p>会員登録がお済みでない方</p>
-  <%= render "customer/shared/links" %>
-  <span>から新規登録を行ってください。</span>
+  <p class="col-3 bg-light text-center mt-5">会員登録がお済みでない方</p>
+  <div class="container row d-flex align-items-center justify-content-center">
+    <span class="mr-2"><%= render "customer/shared/links" %></span>
+    <span>から新規登録を行ってください。</span>
+  </div>
+
 

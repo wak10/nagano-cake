@@ -1,47 +1,47 @@
-<h2>注文情報入力</h2>
+  <div class="d-inline-flex m-4">
+    <h4 class="bg-light px-4 align-items-center">注文情報入力</h4>
+  </div>
 <%= form_with model: @orders , url:confirm_orders_path, local:true do |f| %>
 
-  <div>
     <b>支払方法</b>
+    <div class="ml-4">
       <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
       <%= f.label :payment_method, "クレジットカード" %>
-
       <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
       <%= f.label :payment_method, "銀行振込" %>
-  </div>
+    </div>
 
   <div>
     <b>お届け先</b>
-    <div>
-
-      <!--radio_buttonの設定-->
-
+    <div class="ml-4">
       <%= f.radio_button :address_option, 0, checked: true %>
       <%= f.label :address_option, "ご自身の住所" %>
       <%= current_customer.address %>
     </div>
-    <div>
+    <div  class="ml-4">
       <%= f.radio_button :address_option, 1 %>
       <%= f.label :address_option, "登録済み住所から選択" %>
       <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :full_address ) %>
     </div>
-    <div>
+    <div  class="ml-4">
       <%= f.radio_button :address_option, 2 %>
       <%= f.label :address_option, "新しいお届け先" %>
-      <div>
-        <b>郵便番号(ハイフンなし)</b>
+      <div class="my-2">
+        <span style="margin-right:21px">郵便番号(ハイフンなし)</span>
         <%= f.text_field :postal_code %>
       </div>
-      <div>
-        <b>住所</b>
+      <div class="my-2">
+        <span style="margin-right:10rem">住所</span>
         <%= f.text_field :address %>
       </div>
       <div>
-        <b>宛名</b>
+        <span style="margin-right:10rem">宛名</span>
         <%= f.text_field :name %>
       </div>
     </div>
   </div>
 
-  <%= f.submit '確認画面へ進む' %>
+<div class=" d-flex align-items-center justify-content-center">
+  <%= f.submit '確認画面へ進む', class: "btn btn-primary"  %>
+</div>
 <% end %>

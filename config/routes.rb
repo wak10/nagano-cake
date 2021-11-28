@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :customer,skip: [:passwords,], controllers: {
-  registrations: "customer/registrations",
-  sessions: 'customer/sessions'
-  }
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
@@ -37,6 +33,9 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update ]
   end
     get '/admin' => 'admin/homes#top'
-
+  devise_for :customer,skip: [:passwords,], controllers: {
+    registrations: "customer/registrations",
+    sessions: 'customer/sessions'
+  }
 
 end

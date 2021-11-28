@@ -1,20 +1,43 @@
-<h2>商品編集画面</h2>
+  <div class="d-inline-flex m-4">
+    <h4 class="bg-light px-4 align-items-center">商品編集</h4>
+  </div>
 <%= form_with model: @item, url:admin_item_path, local:true do |f| %>
-  <h4>商品画像</h4>
-    <%= f.attachment_field :image %>
-  <h4>商品名</h4>
-    <%= f.text_field :name %>
-  <h4>商品説明</h4>
-    <%= f.text_area :introduction %>
-  <h4>ジャンル</h4>
-    <%= f.collection_select(:genre_id, @genres, :id, :name) %>
-  <h4>税抜価格</h4>
-    <%= f.text_area :price %>
-  <h4>販売ステータス</h4>
-    <%= f.radio_button :is_active, true %>
-    <%= f.label :is_active, '販売中', value: true %>
-    <%= f.radio_button :is_active, false %>
-    <%= f.label :is_active, '販売停止中', value: false %>
-
-  <%= f.submit '編集する' %>
+<div class="d-flex align-items-center justify-content-center">
+  <table>
+    <tr>
+      <td style="padding-right:100px">商品画像</td>
+      <td><%= f.attachment_field :image %></td>
+    </tr>
+    <tr>
+      <td>商品名</td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <td>商品説明</td>
+      <td><%= f.text_area :introduction %></td>
+    </tr>
+    <tr>
+      <td>ジャンル</td>
+      <td><%= f.collection_select(:genre_id, @genres, :id, :name) %></td>
+    </tr>
+    <tr>
+      <td>税抜価格</td>
+      <td><%= f.text_area :price %></td>
+    </tr>
+    <tr>
+      <td><p>販売ステータス</p></td>
+      <td><p>
+        <%= f.radio_button :is_active, true %>
+        <%= f.label :is_active, '販売中', value: true %>
+        <%= f.radio_button :is_active, false %>
+        <%= f.label :is_active, '販売停止中', value: false %>
+      </p></td>
+    </tr>
+  </table>
+</div>
+  <div class="container">
+    <div class="d-flex align-items-center justify-content-center">
+      <%= f.submit '変更を保存', class: "btn btn-success" %>
+    </div>
+  </div>
 <% end %>

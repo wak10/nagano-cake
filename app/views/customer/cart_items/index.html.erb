@@ -1,8 +1,8 @@
-<h2>ショッピングカート</h2>
-
-<%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete %>
-
-<table>
+<div class="d-flex m-4 justify-content-between">
+  <h4 class="bg-light px-4 align-items-center">ショッピングカート</h4>
+  <btn><%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class:"btn btn-danger" %></btn>
+</div>
+<table class="table table-hover table-bordered">
   <thead>
     <tr>
       <th>商品名</th>
@@ -26,7 +26,7 @@
       <td>
         <%= form_with model: cart_item, url:cart_item_path(cart_item), local:true do |f| %>
           <%= f.select :amount, *[1..10] %>
-          <%= f.submit "変更する", class: "btn-primary" %>
+          <%= f.submit "変更", class: "btn btn-success" %>
         <% end %>
       </td>
       <td>
@@ -35,7 +35,7 @@
       </td>
       <td>
         <div>
-          <%= link_to "削除する", cart_item_path(cart_item), method: :delete  %>
+          <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %>
         </div>
       </td>
     </tr>
@@ -44,13 +44,21 @@
   </tbody>
 
 </table>
-<div>
-  <%= link_to "買い物を続ける", root_path %>
+<div class="d-flex justify-content-between">
+  <div>
+  <%= link_to "買い物を続ける", root_path , class: "btn btn-primary" %>
 </div>
-<div>
-  <b>合計金額</b>
-  <%= @sum %>
+  <div>
+  <table class="table-bordered ">
+    <tr>
+      <td>
+        <b class="bg-light" >合計金額</b>
+        <%= @sum %>
+      </td>
+    </tr>
+  </table>
 </div>
-<div>
-  <%= link_to "注文入力へ進む", new_order_path %>
+</div>
+<div class="text-center">
+  <%= link_to "情報入力へ進む", new_order_path, class: "btn btn-success"  %>
 </div>

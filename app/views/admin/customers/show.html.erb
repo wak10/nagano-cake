@@ -1,34 +1,45 @@
-<h2>
-  <%= @customer.last_name %>
-  <%= @customer.first_name %>
-  さんの会員詳細
-</h2>
-
-<div>
-  <p>会員ID ：<%= @customer.id %></p>
-  <p>
-    氏名：
-    <%= @customer.last_name %>
-    <%= @customer.first_name %>
-  </p>
-  <p>
-    フリガナ：
-    <%= @customer.last_name_kana %>
-    <%= @customer.first_name_kana %>
-  </p>
-  <p>郵便番号：<%= @customer.postal_code %></p>
-  <p>住所：<%= @customer.address %></p>
-  <p>電話番号：<%= @customer.telephone_number %></p>
-  <p>メールアドレス：<%= @customer.email %></p>
-  <p>
-    会員ステータス：<% if @customer.is_active == true %>
+  <div class="d-inline-flex m-4">
+    <h4 class="bg-light px-4 align-items-center">
+      <%= @customer.last_name %>
+      <%= @customer.first_name %>
+      さんの会員詳細
+    </h4>
+  </div>
+<div class="d-flex align-items-center justify-content-center">
+  <div style="margin-right:100px">
+      <p>会員ID</p>
+      <p>氏名</p>
+      <p>フリガナ</p>
+      <p>郵便番号</p>
+      <p>住所</p>
+      <p>電話番号</p>
+      <p>メールアドレス</p>
+      <p>会員ステータス</p>
+    </div>
+  <div>
+    <p><%= @customer.id %></p>
+    <p>
+      <%= @customer.last_name %>
+      <%= @customer.first_name %>
+    </p>
+    <p>
+      <%= @customer.last_name_kana %>
+      <%= @customer.first_name_kana %>
+    </p>
+    <p><%= @customer.postal_code %></p>
+    <p><%= @customer.address %></p>
+    <p><%= @customer.telephone_number %></p>
+    <p><%= @customer.email %></p>
+    <p>
+      <% if @customer.is_active == true %>
         有効
       <% else %>
         退会
       <% end %>
-  </p>
-
-  <%= link_to "編集する", edit_admin_customer_path(@customer) %>
-  <%= link_to "注文履歴一覧を見る", admin_order_path(@customer) %>
-
+    </p>
+  </div>
 </div>
+  <div class=" d-flex align-items-center justify-content-center">
+    <%= link_to "編集する", edit_admin_customer_path(@customer),class: "mr-3 btn btn-success" %>
+    <%= link_to "注文履歴一覧を見る", admin_order_path(@customer),class: "btn btn-primary" %>
+  </div>
