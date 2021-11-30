@@ -8,4 +8,9 @@ class Customer < ApplicationRecord
   has_many :orders
   has_many :order_details, through: :orders
   has_many :addresses
+
+  def active_for_authentication?
+    super && (is_active == true)
+  end
+
 end

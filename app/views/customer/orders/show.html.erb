@@ -51,13 +51,13 @@
         <th>個数</th>
         <th>小計</th>
       </tr>
-      <tr>
         <% @order.order_details.each do |order_detail| %>
+      <tr>
           <td><%= order_detail.item.name %></td>
           <td><%= order_detail.item.with_tax_price %></td>
           <td><%= order_detail.amount %></td>
           <td><%= order_detail.item.with_tax_price * order_detail.amount %></td>
-        <% end %>
       </tr>
+        <% end %>
     </table>
 </div>

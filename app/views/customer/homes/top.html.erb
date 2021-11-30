@@ -14,10 +14,12 @@
       <% @items.last(4).each do |item| %>
       <div class="col">
         <div>
+          <%= link_to item_path(item) do %>
           <%= attachment_image_tag item, :image, :fill, 200, 200 %>
         </div>
         <div>
           <p><%= item.name %></p>
+          <% end %>
           <p>¥<%= item.price %></p>
         </div>
       </div>
